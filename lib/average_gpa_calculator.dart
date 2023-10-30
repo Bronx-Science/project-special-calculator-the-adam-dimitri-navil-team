@@ -8,6 +8,7 @@ class AverageGPACalculator extends StatefulWidget {
 class _AverageGPACalculatorState extends State<AverageGPACalculator> {
   TextEditingController subjectController = TextEditingController();
   TextEditingController gradeController = TextEditingController();
+  String resultText = "";
 
   List<String> subjects = [];
   List<int> grades = [];
@@ -70,6 +71,19 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
                 'Average GPA: ${calculateGPA(grades).toStringAsFixed(2)}',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
+              ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  double scaledGPA = calculateGPA(grades) / 100 * 4;
+                  resultText = 'Scaled GPA: $scaledGPA';
+                });
+              },
+              child: Text('Convert to 4.0 Scale'),
+            ),
+            Text(
+              resultText, // Display the result text
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),
