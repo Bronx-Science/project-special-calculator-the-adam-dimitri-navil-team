@@ -1,6 +1,7 @@
-import 'package:calculator_app/calc_button.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'calc_button.dart';
+import 'average_gpa_calculator.dart'; // Import the AverageGPACalculator
 
 class CalculatorView extends StatefulWidget {
   const CalculatorView({Key? key}) : super(key: key);
@@ -74,146 +75,148 @@ class _CalculatorViewState extends State<CalculatorView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
-          leading: const Icon(Icons.settings, color: Color.fromARGB(255, 64, 0, 75)),
-          actions: const [
-            Padding(
-              padding: EdgeInsets.only(top: 18.0),
-              child: Text('DEG', style: TextStyle(color: Colors.white38)),
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
+      appBar: AppBar(
+        title: Text('Calculator View'), // Set the app bar title
+      ),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // "Go to Average & GPA Calculator" button positioned in the top-left corner
+            Align(
+              alignment: Alignment.topLeft,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Navigate to the Average & GPA Calculator screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AverageGPACalculator()),
+                  );
+                },
+                child: Text('Go to Average & GPA Calculator'),
+              ),
             ),
-            SizedBox(width: 20),
-          ],
-        ),
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Align(
-                alignment: Alignment.bottomRight,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text(result,
-                                  textAlign: TextAlign.left,
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 80))),
-                          const Icon(Icons.more_vert,
-                              color: Color.fromARGB(255, 61, 0, 71), size: 30),
-                          const SizedBox(width: 20),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Text(equation,
+            Align(
+              alignment: Alignment.bottomRight,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(result,
+                                textAlign: TextAlign.left,
                                 style: const TextStyle(
-                                  fontSize: 40,
-                                  color: Colors.white38,
-                                )),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.backspace_outlined,
-                                color: Color.fromARGB(255, 54, 0, 64), size: 30),
-                            onPressed: () {
-                              buttonPressed("⌫");
-                            },
-                          ),
-                          const SizedBox(width: 20),
-                        ],
-                      )
-                    ],
-                  ),
+                                    color: Colors.white, fontSize: 80))),
+                        const Icon(Icons.more_vert,
+                            color: Color.fromARGB(255, 61, 0, 71), size: 30),
+                        const SizedBox(width: 20),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(equation,
+                              style: const TextStyle(
+                                fontSize: 40,
+                                color: Colors.white38,
+                              )),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.backspace_outlined,
+                              color: Color.fromARGB(255, 54, 0, 64), size: 30),
+                          onPressed: () {
+                            buttonPressed("⌫");
+                          },
+                        ),
+                        const SizedBox(width: 20),
+                      ],
+                    )
+                  ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  calcButton('AC', Colors.white10, () => buttonPressed('AC')),
-                  calcButton('%', Colors.white10, () => buttonPressed('%')),
-                  calcButton('÷', Colors.white10, () => buttonPressed('÷')),
-                  calcButton("×", Colors.white10, () => buttonPressed('×')),
-                ],
-              ),
-              const SizedBox(height: 10),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  calcButton('7', Colors.white24, () => buttonPressed('7')),
-                  calcButton('8', Colors.white24, () => buttonPressed('8')),
-                  calcButton('9', Colors.white24, () => buttonPressed('9')),
-                  calcButton('-', Colors.white10, () => buttonPressed('-')),
-                ],
-              ),
-              const SizedBox(height: 10),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  calcButton('4', Colors.white24, () => buttonPressed('4')),
-                  calcButton('5', Colors.white24, () => buttonPressed('5')),
-                  calcButton('6', Colors.white24, () => buttonPressed('6')),
-                  calcButton('+', Colors.white10, () => buttonPressed('+')),
-                ],
-              ),
-              const SizedBox(height: 10),
-              // calculator number buttons
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-//mainAxisAlignment: MainAxisAlignment.spaceAround
-                    children: [
-                      Row(
-                        children: [
-                          calcButton(
-                              '1', Colors.white24, () => buttonPressed('1')),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.04),
-                          calcButton(
-                              '2', Colors.white24, () => buttonPressed('2')),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.04),
-                          calcButton(
-                              '3', Colors.white24, () => buttonPressed('3')),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          calcButton('+/-', Colors.white24,
-                              () => buttonPressed('+/-')),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.04),
-                          calcButton(
-                              '0', Colors.white24, () => buttonPressed('0')),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.04),
-                          calcButton(
-                              '.', Colors.white24, () => buttonPressed('.')),
-                        ],
-                      ),
-                    ],
-                  ),
-                  calcButton('=', Color.fromARGB(255, 60, 0, 71), () => buttonPressed('=')),
-                ],
-              )
-            ],
-          ),
-        ));
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                calcButton('AC', Colors.white10, () => buttonPressed('AC')),
+                calcButton('%', Colors.white10, () => buttonPressed('%')),
+                calcButton('÷', Colors.white10, () => buttonPressed('÷')),
+                calcButton("×", Colors.white10, () => buttonPressed('×')),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                calcButton('7', Colors.white24, () => buttonPressed('7')),
+                calcButton('8', Colors.white24, () => buttonPressed('8')),
+                calcButton('9', Colors.white24, () => buttonPressed('9')),
+                calcButton('-', Colors.white10, () => buttonPressed('-')),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                calcButton('4', Colors.white24, () => buttonPressed('4')),
+                calcButton('5', Colors.white24, () => buttonPressed('5')),
+                calcButton('6', Colors.white24, () => buttonPressed('6')),
+                calcButton('+', Colors.white10, () => buttonPressed('+')),
+              ],
+            ),
+            const SizedBox(height: 10),
+            // calculator number buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        calcButton(
+                            '1', Colors.white24, () => buttonPressed('1')),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.04),
+                        calcButton(
+                            '2', Colors.white24, () => buttonPressed('2')),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.04),
+                        calcButton(
+                            '3', Colors.white24, () => buttonPressed('3')),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        calcButton('+/-', Colors.white24,
+                            () => buttonPressed('+/-')),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.04),
+                        calcButton(
+                            '0', Colors.white24, () => buttonPressed('0')),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.04),
+                        calcButton(
+                            '.', Colors.white24, () => buttonPressed('.')),
+                      ],
+                    ),
+                  ],
+                ),
+                calcButton('=', Color.fromARGB(255, 60, 0, 71), () => buttonPressed('=')),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
