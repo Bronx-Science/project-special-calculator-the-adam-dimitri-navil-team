@@ -11,7 +11,7 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
   String resultText = "";
 
   List<String> subjects = [];
-  List<int> grades = [];
+  List<double> grades = [];
 
   double gpa = 0.0;
 
@@ -49,7 +49,7 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
                   onPressed: () {
                     setState(() {
                       subjects.add(subjectController.text);
-                      grades.add(int.parse(gradeController.text));
+                      grades.add(double.parse(gradeController.text));
                       subjectController.clear();
                       gradeController.clear();
                     });
@@ -90,10 +90,10 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
     );
   }
 
-  double calculateGPA(List<int> grades) {
+  double calculateGPA(List<double> grades) {
     double totalPoints = 0.0;
     int totalSubjects = grades.length;
-    for (int grade in grades){
+    for (double grade in grades){
       totalPoints += grade;
     }
     if (totalSubjects == 0) return 0.0;

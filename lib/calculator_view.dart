@@ -114,7 +114,7 @@ class _CalculatorViewState extends State<CalculatorView> {
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 80))),
                         const Icon(Icons.more_vert,
-                            color: Color.fromARGB(255, 61, 0, 71), size: 30),
+                            color: Color.fromARGB(255, 18, 0, 71), size: 30),
                         const SizedBox(width: 20),
                       ],
                     ),
