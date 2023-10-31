@@ -71,7 +71,7 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
                 'Average GPA: ${calculateGPA(grades).toStringAsFixed(2)}',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              ElevatedButton(
+            ElevatedButton(
               onPressed: () {
                 setState(() {
                   double scaledGPA = calculateGPA(grades) / 100 * 4;
@@ -93,7 +93,7 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
   double calculateGPA(List<int> grades) {
     double totalPoints = 0.0;
     int totalSubjects = grades.length;
-    for (int grade in grades){
+    for (int grade in grades) {
       totalPoints += grade;
     }
     if (totalSubjects == 0) return 0.0;
