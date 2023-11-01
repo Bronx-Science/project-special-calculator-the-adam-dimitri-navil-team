@@ -68,8 +68,12 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
                   icon: const Icon(Icons.add, color: Colors.white),
                   onPressed: () {
                     setState(() {
-                      subjects.add(subjectController.text);
-                      grades.add(double.parse(gradeController.text));
+                      if (double.parse(gradeController.text) >= 0){
+                        subjects.add(subjectController.text);
+                        grades.add(double.parse(gradeController.text));
+                        subjectController.clear();
+                        gradeController.clear();
+                      }
                       subjectController.clear();
                       gradeController.clear();
                     });
