@@ -98,7 +98,40 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  double scaledGPA = calculateGPA(grades) / 100 * 4;
+                  double scaledGPA = 0;
+                  if (calculateGPA(grades) >= 93.0){
+                    scaledGPA = 4.0;
+                  }
+                  else if (calculateGPA(grades) >= 90){
+                    scaledGPA = 3.7;
+                  }
+                  else if (calculateGPA(grades) >= 87){
+                    scaledGPA = 3.3;
+                  }
+                  else if (calculateGPA(grades) >= 83){
+                    scaledGPA = 3.0;
+                  }
+                  else if (calculateGPA(grades) >= 80){
+                    scaledGPA = 2.7;
+                  }
+                  else if (calculateGPA(grades) >= 77){
+                    scaledGPA = 2.3;
+                  }
+                  else if (calculateGPA(grades) >= 73){
+                    scaledGPA = 2.0;
+                  }
+                  else if (calculateGPA(grades) >= 70){
+                    scaledGPA = 1.7;
+                  }
+                  else if (calculateGPA(grades) >= 67){
+                    scaledGPA = 1.3;
+                  }
+                  else if (calculateGPA(grades) >= 65){
+                    scaledGPA = 1.0;
+                  }
+                  else {
+                    scaledGPA = 0.0;
+                  }
                   resultText = 'Scaled GPA: $scaledGPA';
                 });
               },
