@@ -78,6 +78,7 @@ class _CalculatorViewState extends State<CalculatorView> {
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
         title: Text('Calculator View'), // Set the app bar title
+        backgroundColor: Color.fromARGB(255, 60, 0, 71),
       ),
       body: SafeArea(
         child: Column(
@@ -94,6 +95,10 @@ class _CalculatorViewState extends State<CalculatorView> {
                     MaterialPageRoute(builder: (context) => AverageGPACalculator()),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 60, 0, 71),
+                  shape: StadiumBorder(),  
+                ),
                 child: Text('Go to Average & GPA Calculator'),
               ),
             ),
@@ -131,7 +136,7 @@ class _CalculatorViewState extends State<CalculatorView> {
                         ),
                         IconButton(
                           icon: const Icon(Icons.backspace_outlined,
-                              color: Color.fromARGB(255, 54, 0, 64), size: 30),
+                              color: Color.fromARGB(255, 103, 0, 121), size: 30),
                           onPressed: () {
                             buttonPressed("⌫");
                           },
