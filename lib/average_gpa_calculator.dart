@@ -18,8 +18,10 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
         title: Text('Average & GPA Calculator'),
+        backgroundColor: Color.fromARGB(255, 60, 0, 71),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -28,24 +30,42 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
           children: <Widget>[
             Text(
               'Add Subjects and Grades:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
             ),
             Row(
               children: <Widget>[
                 Expanded(
                   child: TextField(
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
                     controller: subjectController,
-                    decoration: InputDecoration(labelText: 'Subject'),
+                    decoration: InputDecoration(
+                      labelText: 'Subject',
+                      labelStyle: TextStyle(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)
+                      )
+                      ),
                   ),
                 ),
                 Expanded(
                   child: TextField(
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
                     controller: gradeController,
-                    decoration: InputDecoration(labelText: 'Grade'),
+                    decoration: InputDecoration(
+                      labelText: 'Grade',
+                      labelStyle: TextStyle(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)
+                      )
+                      ),
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add, color: Colors.white),
                   onPressed: () {
                     setState(() {
                       subjects.add(subjectController.text);
@@ -60,16 +80,16 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
             SizedBox(height: 20),
             Text(
               'Subjects and Grades:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
             ),
             if (subjects.isNotEmpty)
               for (int i = 0; i < subjects.length; i++)
-                Text('${subjects[i]}: ${grades[i]}'),
+                Text('${subjects[i]}: ${grades[i]}', style: TextStyle(color: Colors.white),),
             SizedBox(height: 20),
             if (subjects.isNotEmpty)
               Text(
                 'Average GPA: ${calculateGPA(grades).toStringAsFixed(2)}',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
               ),
             ElevatedButton(
               onPressed: () {
@@ -78,11 +98,14 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
                   resultText = 'Scaled GPA: $scaledGPA';
                 });
               },
+              style: ElevatedButton.styleFrom (
+                backgroundColor: Color.fromARGB(255, 60, 0, 71)
+              ),
               child: Text('Convert to 4.0 Scale'),
             ),
             Text(
               resultText, // Display the result text
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
             ),
           ],
         ),
