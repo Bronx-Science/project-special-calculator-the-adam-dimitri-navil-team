@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'calculator_view.dart';
 import 'average_gpa_calculator.dart';
+// ignore: duplicate_import
 import 'package:calculator_app/calculator_view.dart';
 
 void main() {

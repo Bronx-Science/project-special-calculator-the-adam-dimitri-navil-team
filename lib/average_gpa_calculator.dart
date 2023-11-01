@@ -107,7 +107,10 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
               resultText, // Display the result text
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
             ),
+                if(subjects.isNotEmpty)
+                Row()
           ],
+      
         ),
       ),
     );
@@ -123,3 +126,6 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
     return totalPoints / totalSubjects;
   }
 }
+//Enter desired Average:
+//Returns: {num} more points required to reach {desired_average}
+//formula: Desired * subjects.length - avg * subjects.length
