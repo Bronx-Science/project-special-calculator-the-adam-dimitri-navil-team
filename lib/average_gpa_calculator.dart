@@ -141,7 +141,7 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
               child: Text('Convert to 4.0 Scale'),
             ),
             Text(
-              resultText, // Display the result text
+              resultText,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
             ),
                 if(subjects.isNotEmpty)
