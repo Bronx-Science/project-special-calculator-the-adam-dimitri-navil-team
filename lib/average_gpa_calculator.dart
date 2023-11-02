@@ -214,6 +214,3 @@ class _AverageGPACalculatorState extends State<AverageGPACalculator> {
     return (num * subjects.length) - (calculateGPA(grades) * subjects.length);
   }
 }
-//Enter desired Average:
-//Returns: {num} more points required to reach {desired_average}
-//formula: Desired * subjects.length - avg * subjects.length
